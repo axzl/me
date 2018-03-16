@@ -1,0 +1,109 @@
+git config --global user.name "your name"
+git config --global user.email "email.example.com"
+
+git init git 仓库初始化
+
+git add readme.txt 添加/提交readme到暂存区中
+git commit -m "wrote a readme file" 确认git提交
+
+git status 查看仓库状态
+git diff readme.txt 查看文件改变
+
+git log 查看历史修改纪录
+git log --pretty=oneline 单行显示历史修改纪录
+
+git reset --hard head^ 回退到上一个版本
+git reset --hard head^^ 回退到上上个版本
+git reset --hard head~100 回退到上100个版本
+git reset --hard bff9 切换到bff9版本
+
+git reflog 查看命令记录
+git ls-files 查看工作区文件
+
+working directory 工作区
+repository 版本库 (.git目录)
+stage 暂存区
+
+git checkout -- readme.txt 撤销工作区的文件更改（add 之前）
+git reset head readme.txt 撤销暂存区的文件修改（commit之前）
+
+git rm test.txt 从版本库中删除文件
+git commit -m "remove test.txt" 确认提交注释
+git checkout -- test.txt 撤销删除文件
+
+git remote add origin git@github.com:michaelliao/learngit.git 关联本地到远程库
+git push -u origin master 首次添加到远程库
+git push origin master 添加到远程库
+
+git clone git@github.com:michaelliao/gitskills.git 克隆远程库到本地
+
+git checkout -b dev 创建分支dev并切换
+git branch dev  创建分支dev
+git checkout dev 切换分支dev
+git branch 查看当前分支
+git checkout master 切换到分支master
+git merge dev 合并分支dev到当前分支
+git branch -d dev 删除分支dev
+git log --graph --pretty=oneline --abbrev-commit 查看分支合并情况
+
+git merge --no-ff -m "merge with no-ff" dev 合并分支dev，禁用Fast forward
+
+git stash 当前工作状态入栈
+git checkout master 切换到分支master
+git checkout -b issue-101 在分支master上创建分支issue-101
+git stash list 查看保存的工作状态
+git stash pop 恢复并删除stash内容
+
+git branch -D feature-vulcan 强行删除分支feature-vulcan(还没合并)
+
+git remote 查看远程库的信息
+git remote -v 显示更详细的远程库信息
+git push origin master 把分支master上的所有本地提交推送到远程库
+git branch --set-upstream dev origin/dev 关联本地分支和远程分支origin/dev
+git pull 抓取冲突分支
+git commit -m "merge & fix hello.py" 解决冲突再次提交
+git push origin dev 再次推送
+
+git tag v1.0 给当前分支打上标签(默认标签是打在最新提交的commit上)
+git tag 查看标签
+git tag v0.9 6224937 给commit-id为6224937打上标签
+git show v0.9 查看标签信息
+git tag -a v0.1 -m "version 0.1 released" 3628164 创建带有说明的标签
+git tag -s v0.2 -m "signed version 0.2 released" fec145a 用私钥签名一个标签
+
+git tag -d v0.1 删除标签
+git push origin v1.0 推送标签
+git push origin --tags 一次性推送全部尚未推送到远程的本地标签
+
+git tag -d v0.9 先从本地删除
+git push origin :refs/tags/v0.9 从远程删除标签
+
+git remote rm origin 先删除已关联的名为origin的远程库
+git remote add github git@github.com:michaelliao/learngit.git
+关联GitHub的远程库，远程库的名称叫github，不叫origin了
+git remote add gitee git@gitee.com:liaoxuefeng/learngit.git 再关联码云的远程库
+
+git push github master 推送到GitHub
+git push gitee master 推送到码云
+
+git config --global color.ui true 让Git显示颜色
+.gitignore文件
+git add -f App.class 强制添加到Git
+git check-ignore -v App.class 规则检查
+
+git config --global alias.st status 配置别名
+git config --global alias.ci commit 配置别名
+git ci -m "bala bala bala..." 提交
+git config --global alias.unstage 'reset HEAD' 配置撤销别名 
+git config --global alias.last 'log -1' 配置一个git last，让其显示最后一次提交信息
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+cat .git/config 
+
+sudo apt-get install git 安装git
+sudo adduser git 创建一个git用户，用来运行git服务
+sudo git init --bare sample.git 选定一个目录作为Git仓库，假定是/srv/sample.git
+sudo chown -R git:git sample.git 把owner改为git
+git:x:1001:1001:,,,:/home/git:/bin/bash -> git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell
+git用户可以正常通过ssh使用git
+
+git clone git@server:/srv/sample.git 命令克隆远程仓库
