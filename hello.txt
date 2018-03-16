@@ -1,1 +1,2 @@
 hello, my friend git!
+hello, my friend git!
